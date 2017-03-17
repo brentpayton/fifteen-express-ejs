@@ -15,8 +15,10 @@ var expressSession        = require('express-session');
 // Mongoose
 // ----------------------------------------------------------------------------
 var mongoose              = require('mongoose');
-                            // mongoose.connect('mongodb://localhost/yelpcamp');
-                            mongoose.connect('mongodb://yelpcamp:yelpcamp@ds039115.mlab.com:39115/yelpcamp');
+                            // mongoose.connect('mongodb://localhost/yelpcamp'); //Dev
+                            // mongoose.connect('mongodb://yelpcamp:yelpcamp@ds039115.mlab.com:39115/yelpcamp');  //Prod
+                            console.log(process.env.DATABASEURL);
+                            mongoose.connect(process.env.DATABASEURL);
 // ----------------------------------------------------------------------------                            
 // Models 
 // ----------------------------------------------------------------------------
