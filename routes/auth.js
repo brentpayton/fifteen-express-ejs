@@ -1,7 +1,7 @@
 var express               = require('express');
 var router                = express.Router({mergeParams: true});
 var passport              = require('passport');
-var User                  = require('../models/user.js');
+var User                  = require('../models/user');
 
 // ----------------------------------------------------------------------------
 // Register
@@ -11,10 +11,9 @@ router.get('/register', function(req, res) {
 });
 
 router.post('/register', function(req, res) {
-  var newUser = new User({username: req.body.username});
+  var newUser = new User({username: req.body.username, administrator: false});
   User.register(newUser, req.body.password, function(err, user) {
     if (err) {
-      // console.log(err);
       req.flash('error', err.message);
       res.redirect('/register');
     } else {
@@ -27,16 +26,17 @@ router.post('/register', function(req, res) {
 });
 
 // ----------------------------------------------------------------------------
-// Log in 
+// Log in
 // ----------------------------------------------------------------------------
 router.get('/login', function(req, res) {
   res.render('login');
 });
 
-router.post('/login', passport.authenticate('local', 
+router.post('/login', passport.authenticate('local',
   {
-    successRedirect:'/campgrounds', 
-    failureRedirect:'/login'
+    successRedirect:'/campgrounds',
+    failureRedirect:'/login',
+    failureFlash: true
   }), function(req, res) {
 });
 
@@ -45,7 +45,7 @@ router.post('/login', passport.authenticate('local',
 // ----------------------------------------------------------------------------
 router.get('/logout', function(req, res) {
   req.logout();
-  req.flash('success', 'You have been logged out');  
+  req.flash('success', 'You have been logged out');
   res.redirect('/campgrounds');
 });
 

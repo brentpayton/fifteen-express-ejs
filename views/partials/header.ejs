@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
   <head>
     <title>YelpCamp</title>
@@ -7,18 +7,19 @@
       src="https://code.jquery.com/jquery-3.1.1.min.js"
       integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
       crossorigin="anonymous">
-    </script>    
-    <script 
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
-      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+    </script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
       crossorigin="anonymous">
     </script>
+    <script src="/js/main.js"> </script>
     <!--CSS-->
-    <link 
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
-      rel="stylesheet" 
-      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
-      crossorigin="anonymous">    
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous">
     <link href='/stylesheets/main.css' rel='stylesheet'>
   </head>
   <body>
@@ -31,11 +32,14 @@
         <div class='collapse navbar-collapse'>
           <ul class='navbar-nav navbar-right nav'>
             <% if(!currentUser) { %>
-              <li><a href='/login'>Login</a></li>
+              <li><a href='/login'>Log In</a></li>
               <li><a href='/register'>Sign Up</a></li>
             <% } else { %>
               <li><a href='#'>Signed in as <%= currentUser.username %></a></li>
               <li><a href='/logout'>Log Out</a></li>
+            <% } %>
+            <% if(currentUser && currentUser.administrator) { %>
+              <li><a href='/users'>User Managment</a></li>
             <% } %>
           </ul>
         </div>
@@ -46,7 +50,7 @@
       <% if(error && error.length > 0){ %>
         <div class='alert alert-danger' role='alert'><%= error %></div>
       <% } %>
-      <% if(success && success.length > 0){ %>      
+      <% if(success && success.length > 0){ %>
         <div class='alert alert-success' role='alert'><%= success %></div>
       <% } %>
     </div>

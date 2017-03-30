@@ -11,16 +11,21 @@ var expressSession        = require('express-session');
                               resave              : false,
                               saveUninitialized   : false
                             }));
+
+var Promise               = require("bluebird");
 // ----------------------------------------------------------------------------
 // Mongoose
 // ----------------------------------------------------------------------------
 var mongoose              = require('mongoose');
-                            // mongoose.connect('mongodb://localhost/yelpcamp'); //Dev
-                            // mongoose.connect('mongodb://yelpcamp:yelpcamp@ds039115.mlab.com:39115/yelpcamp');  //Prod
-                            console.log(process.env.DATABASEURL);
-                            mongoose.connect(process.env.DATABASEURL);
-// ----------------------------------------------------------------------------                            
-// Models 
+                          // mongoose.connect('mongodb://localhost/yelpcamp'); //Dev
+                          // mongoose.connect('mongodb://yelpcamp:yelpcamp@ds039115.mlab.com:39115/yelpcamp');  //Prod
+                          // If env variable doesn't exist, default to local development database.
+mongoose.Promise          = Promise;
+var dbUrl                 = process.env.DATABASEURL || 'mongodb://localhost/yelpcamp';
+                          //mongoose.connect(process.env.DATABASEURL);
+                          mongoose.connect(dbUrl);
+// ----------------------------------------------------------------------------
+// Models
 // ----------------------------------------------------------------------------
 var Campground            = require('./models/campground.js');
 var Comment               = require('./models/comment.js');
@@ -35,7 +40,7 @@ var passport              = require('passport');
                             app.use(passport.session());
                             passport.serializeUser(User.serializeUser());
                             passport.deserializeUser(User.deserializeUser());
-                            passport.use(new LocalStrategy(User.authenticate()));                      
+                            passport.use(new LocalStrategy(User.authenticate()));
 var bodyParser            = require('body-parser');
                             app.use(bodyParser.urlencoded({extended: true}));
 
@@ -44,7 +49,7 @@ var bodyParser            = require('body-parser');
 // ----------------------------------------------------------------------------
 var methodOverride        = require('method-override');
                             app.use(methodOverride('_method'));
-                            
+
 // ----------------------------------------------------------------------------
 // Connect-Flash
 // ----------------------------------------------------------------------------
@@ -78,6 +83,9 @@ var authRoutes            = require('./routes/auth.js');
 var indexRoutes           = require('./routes/index.js');
                             app.use(indexRoutes);
 
+var userRoutes            = require('./routes/users.js');
+                            app.use(userRoutes);
+
 // DELETE everything in the database*******************************************
 // . . . then replace with seed data.  Use for testing purposes only.
 // var seedDB = require('./seeds');
@@ -87,6 +95,9 @@ var indexRoutes           = require('./routes/index.js');
 // ============================================================================
 // Server listen
 // ============================================================================
-app.listen(process.env.PORT, process.env.IP, function() {
-  console.log('YelpCamp Server Started');
+// app.listen(process.env.PORT, process.env.IP, function() {
+//   console.log('YelpCamp Server Started');
+// });
+app.listen(3000, function() {
+  console.log("YelpCamp2 Server Started");
 });
