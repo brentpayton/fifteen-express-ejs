@@ -1,29 +1,24 @@
-/* global Comment */
+/* Used when deleting existing poems in the database and adds default data. */
 
-// Create campgrounds and comments.
-// Designed for error-driven development.
 
 var mongoose =      require('mongoose');
-var Campground =    require('./models/campground');
-var Comment =       require('./models/comment');
+var Poem =          require('./models/poem');
+// var Comment =       require('./models/comment');
 
 var data = [
   {
-    name: "Cloud's Rest",
-    image: 'https://farm9.staticflickr.com/8471/8137270056_21d5be6f52.jpg',
+    title: "Cloud's Rest",
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
   },
   {
-    name: "Desert Mesa",
-    image: 'https://farm3.staticflickr.com/2135/2051881798_f753fdfd56.jpg',
+    title: "Desert Mesa",
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
   },
   {
-    name: "Canyon Floor",
-    image: 'https://farm2.staticflickr.com/1274/4670974422_ec49d65ab2.jpg',
+    title: "Canyon Floor",
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
   }
-  
+
 ];
 
 //-----------------------------------------------------------------------------
@@ -33,12 +28,12 @@ var data = [
 
 function seedDB () {
   // Remove all campgrounds
-  Campground.remove({}, function(err) {
-    if (err) {
-      console.log(err);
-    }
-    console.log('Removed Campgrounds');
-
+  Poem.remove({}, function(err) {
+      if (err) {
+        console.log(err);
+      }
+      console.log('Removed Poems');
+    });
     // // Remove all comments
     // Comment.remove({}, function(err) {
     //   if(err) {
@@ -47,7 +42,7 @@ function seedDB () {
     //   console.log('Removed Comments');
     // });
 
-    // // Add a few campgrounds with comments
+    // Add a few campgrounds with comments
     // data.forEach(function(seed) {
     //   Campground.create(seed, function(err, campground) {
     //     if(err) {
@@ -71,7 +66,15 @@ function seedDB () {
     //     }
     //   });
     // });
-  });
+
+    // Add a few poems with descriptions
+    data.forEach(function(seed) {
+      Poem.create(seed, function(err, poem) {
+        if (err) {
+          console.log(err);
+        }
+      });
+    });
 }
 
 module.exports = seedDB;

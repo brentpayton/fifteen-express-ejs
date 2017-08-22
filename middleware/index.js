@@ -1,6 +1,7 @@
 var Campground            = require('../models/campground');
 var Comment               = require('../models/comment');
 var User                  = require('../models/user');
+var Poem                  = require('../models/poem');
 
 var middlewareObj = {};
 
@@ -14,6 +15,29 @@ middlewareObj.checkCampgroundOwnership = function(req, res, next) {
       } else {
         // Check if user is the author of the campground entry
         if (foundCampground.author.id.equals(req.user._id)) {
+          next();
+        } else {
+          req.flash('error', "You don't have permission to do that");
+          res.redirect('back');
+        }
+      }
+    });
+  } else {
+    req.flash('error', 'Please log in first');
+    res.redirect('back');
+  }
+};
+
+middlewareObj.checkPoemOwnership = function(req, res, next) {
+  if(req.isAuthenticated()){
+    Poem.findById(req.params.id, function(err, foundPoem) {
+      if (err) {
+        console.log(err);
+        req.flash('error', err);
+        res.redirect('/poems');
+      } else {
+        // Check if user is the author of the campground entry
+        if (foundPoem.author.id.equals(req.user._id)) {
           next();
         } else {
           req.flash('error', "You don't have permission to do that");

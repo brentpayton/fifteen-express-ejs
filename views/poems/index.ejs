@@ -1,0 +1,47 @@
+<% include ../partials/header %>
+
+<div class='container'>
+
+  <%# <header class='jumbotron'>
+    <div class='container'> <!--Want extra space when viewed on smaller screens-->
+      <h1>Poems</h1>
+      <p>
+        <a class="btn btn-primary btn-large" href='/poems/new'>Add a new poem</a>
+      </p>
+    </div>
+  </header>%>
+
+  <div class='row'>
+    <div>
+      <a class="btn btn-success btn-large center-block" href='/poems/new'>Add a new poem</a>
+    </div>
+  </div>
+
+  <%# <div class='row'>
+    <div class='col-lg-12'>
+      <h3>Most Recent</h3>
+    </div>
+  </div>%>
+
+  <div class='row text-center'>
+
+    <% poems.forEach(function(poem){ %>
+      <div class='col-md-3 col-sm-6'>
+        <div class='caption'>
+          <h4> <%= poem.title %> </h4>
+        </div>
+        <div style="text-align: left;">
+          <a href='/poems/<%= poem._id %>' class='btn btn-primary'>View</a>
+        </div>
+        <div style="text-align: left;">
+          <p> <%= poem.description %> </p>
+        </div>
+        <div><hr /></div>
+      </div>
+    <% }); %>
+
+  </div>
+
+</div>
+
+<% include ../partials/footer %>

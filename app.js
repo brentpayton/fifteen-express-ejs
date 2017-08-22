@@ -11,6 +11,7 @@ var expressSession        = require('express-session');
                               resave              : false,
                               saveUninitialized   : false
                             }));
+var moment                = require('moment');
 
 var Promise               = require("bluebird");
 // ----------------------------------------------------------------------------
@@ -30,6 +31,7 @@ var dbUrl                 = process.env.DATABASEURL || 'mongodb://localhost/yelp
 var Campground            = require('./models/campground.js');
 var Comment               = require('./models/comment.js');
 var User                  = require('./models/user.js');
+var Poem                  = require('./models/poem.js');
 
 // ----------------------------------------------------------------------------
 // Auth
@@ -73,6 +75,10 @@ var campgroundRoutes      = require('./routes/campgrounds.js');
                             // All campground routes start with '/campgrounds'
                             app.use('/campgrounds', campgroundRoutes);
 
+var poemRoutes              = require('./routes/poems.js');
+                            // All poem routes start with '/poems'
+                            app.use('/poems', poemRoutes);
+
 var commentRoutes         = require('./routes/comments.js');
                             // All comment routes start with 'campgrounds/:id/comments'
                             app.use('/campgrounds/:id/comments', commentRoutes);
@@ -99,5 +105,5 @@ var userRoutes            = require('./routes/users.js');
 //   console.log('YelpCamp Server Started');
 // });
 app.listen(3000, function() {
-  console.log("YelpCamp2 Server Started");
+  console.log("Fifteenlines Server Started");
 });

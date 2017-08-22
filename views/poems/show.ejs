@@ -1,0 +1,27 @@
+<% include ../partials/header %>
+
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-9'>
+        <div class='caption-full'>
+          <h3><a><%= poem.title %></a></h3>
+          <p><em>Submitted by <%= poem.author.username %></em></p>
+        </div>
+          <!--Control visibility of poem Edit and Delete buttons based on logged-in user-->
+          <% if (currentUser && poem.author.id.equals(currentUser._id)){ %>
+            <a class='btn btn-warning' href='/poems/<%= poem._id %>/edit'>Edit Poem</a>
+            <form class='delete-form pull-right' action='/poems/<%= poem._id %>?_method=DELETE' method="POST">
+              <button class='btn btn-danger'>Delete Poem</button>
+            </form>
+          <% } %>
+          <hr>
+          <p><%= poem.description %></p>
+          <hr>
+          <p><em>Created <%= poem.createdAt %></em></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include ../partials/footer %>

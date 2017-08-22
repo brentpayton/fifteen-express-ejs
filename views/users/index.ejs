@@ -4,7 +4,7 @@
 
   <div class='row'>
     <div class='col-xs-12'>
-      <h1>All users</h1>
+      <h1>All Users</h1>
     </div>
   </div>
 
@@ -24,13 +24,13 @@
   </div>
 
 <% users.forEach(function(user){ %>
-  <div class='row'>
-    <div class='col-xs-3'>
-      <a class='btn btn-primary' href="/users/<%= user._id %>/edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</a>
-      <form class='delete-form delete' action='/users/<%= user._id %>?_method=DELETE' method="POST">
-        <button class='btn btn-danger'>Delete</button>
-      </form>
-    </div>
+  <div class="row" style="height: 40px;">
+  <div class="col-xs-3" style="vertical-align: middle">
+    <a class='btn btn-primary' href="/users/<%= user._id %>/edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</a>
+    <form class='delete-form delete' action='/users/<%= user._id %>?_method=DELETE' method="POST">
+      <button class='btn btn-danger'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete</button>
+    </form>
+  </div>
     <div class='col-xs-2'>
       <%= user.username %>
     </div>
