@@ -2,20 +2,16 @@
 
 <div class='container'>
 
-  <%# <header class='jumbotron'>
-    <div class='container'> <!--Want extra space when viewed on smaller screens-->
-      <h1>Poems</h1>
-      <p>
-        <a class="btn btn-primary btn-large" href='/poems/new'>Add a new poem</a>
-      </p>
-    </div>
-  </header>%>
+  <!--Control visibility of poem Edit and Delete buttons based on logged-in user-->
+  <% if (currentUser){ %>
 
-  <div class='row'>
-    <div>
-      <a class="btn btn-success btn-large center-block" href='/poems/new'>Add a new poem</a>
+    <div class='row'>
+      <div>
+        <a class="btn btn-success btn-large center-block" href='/poems/new'>Add a new poem</a>
+      </div>
     </div>
-  </div>
+
+    <% } %>
 
   <%# <div class='row'>
     <div class='col-lg-12'>
