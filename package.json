@@ -23,5 +23,14 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.0.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-bootlint": "^0.10.2",
+    "grunt-contrib-csslint": "^2.0.0",
+    "grunt-contrib-uglify": "^3.0.1",
+    "grunt-html": "^8.5.0",
+    "grunt-link-checker": "^0.2.0",
+    "grunt-run": "^0.7.0"
   }
 }

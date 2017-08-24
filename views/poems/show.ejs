@@ -1,36 +1,42 @@
 <% include ../partials/header %>
 
 <div class='container'>
+
   <div class='row'>
-    <div class="col-md-9">
-      <a href="/" class="col-md-9 btn btn-primary">
+    <div class="col-md-8 col-md-offset-2">
+      <a href="/" class="btn btn-primary">
         <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
         Back</a>
+    </div>
   </div>
-    <div class='col-md-9'>
-        <div class='caption-full'>
-          <h3><a><%= poem.title %></a></h3>
-          <p><em>Submitted by <%= poem.author.username %></em></p>
-        </div>
-          <!--Control visibility of poem Edit and Delete buttons based on logged-in user-->
-          <% if (currentUser && poem.author.id.equals(currentUser._id)){ %>
-            <a class='btn btn-warning' href='/poems/<%= poem._id %>/edit'>
-              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-              Edit Poem</a>
-            <form class='delete-form pull-right' action='/poems/<%= poem._id %>?_method=DELETE' method="POST">
-              <button class='btn btn-danger'>
-              <span class="glyphicon glyphicon-remove"></span>
-              Delete Poem</button>
-            </form>
-          <% } %>
-          <hr>
-          <p><%= poem.description %></p>
-          <hr>
-          <p><em>Created <%= poem.createdAt %></em></p>
-        </div>
+  <div class="row">
+    <div class='col-md-8 col-md-offset-2'>
+      <div class='caption-full'>
+        <h3><a><%= poem.title %></a></h3>
+        <p><em>Submitted by <%= poem.author.username %></em></p>
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class='col-md-8 col-md-offset-2'>
+      <!--Control visibility of poem Edit and Delete buttons based on logged-in user-->
+      <% if (currentUser && poem.author.id.equals(currentUser._id)){ %>
+        <a class='btn btn-warning' href='/poems/<%= poem._id %>/edit'>
+          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+          Edit Poem</a>
+        <form class='delete-form pull-right' action='/poems/<%= poem._id %>?_method=DELETE' method="POST">
+          <button class='btn btn-danger'>
+          <span class="glyphicon glyphicon-remove"></span>
+          Delete Poem</button>
+        </form>
+      <% } %>
+      <hr>
+      <p><%= poem.description %></p>
+      <hr>
+      <p><em>Created <%= poem.createdAt %></em></p>
+    </div>
+  </div>
+
 </div>
 
 <% include ../partials/footer %>
