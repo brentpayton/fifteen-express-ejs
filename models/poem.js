@@ -5,7 +5,7 @@ var poemSchema = new mongoose.Schema({
   description:    String,
   isComplete:     Boolean,
   isHidden:       Boolean,
-  // timeCreated :   { type : Date, default: Date.now },
+  timeCreated :   { type : Date, default: Date.now },
   author: {
     id: {
       type: mongoose.Schema.Types.ObjectId,
