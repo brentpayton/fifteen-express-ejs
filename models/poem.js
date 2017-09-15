@@ -3,10 +3,10 @@ var mongoose = require('mongoose');
 var poemSchema = new mongoose.Schema({
   title:          String,
   description:    String,
+  content:        String,
   isComplete:     Boolean,
   isHidden:       Boolean,
-  // timeCreated :   { type : Date, default: Date.now },
-  timeCreated :   { type : Date },
+  timeCreated :   { type : Date, default: Date.now },
   author: {
     id: {
       type: mongoose.Schema.Types.ObjectId,

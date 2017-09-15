@@ -26,6 +26,7 @@ router.get('/new', middleware.isLoggedIn, function(req, res) {
 router.post('/', middleware.isLoggedIn, function(req, res) {
   var title         = req.body.title;
   var description   = req.body.description;
+  var content       = req.body.content;
   var author = {
     id: req.user._id,
     username: req.user.username
@@ -33,6 +34,7 @@ router.post('/', middleware.isLoggedIn, function(req, res) {
   var newPoem = {
     title: title,
     description: description,
+    content: content,
     author: author};
   Poem.create(newPoem, function(err, createdPoem) {
     if (err) {

@@ -6,7 +6,7 @@
     <div style='margin: 25px auto;'>
       <form action='/poems/<%= poem._id %>?_method=PUT' method='POST'>
         <div class='form-group'>
-          <input class='form-control' type='text' value='<%= poem.title %>'          name='poem[title]'>
+          <input class='form-control' type='text' value='<%= poem.title %>' name='poem[title]'>
         </div>
         <div class='form-group'>
           <textarea class='form-control' type='textarea' rows='3' name='poem[description]'><%= poem.description %></textarea>
