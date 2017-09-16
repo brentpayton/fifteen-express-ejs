@@ -5,11 +5,13 @@
     <h1 style='text-align: center'>Editing "<%= poem.title %>"</h1>
     <div style='margin: 25px auto;'>
       <form action='/poems/<%= poem._id %>?_method=PUT' method='POST'>
+        <h3>Title</h3>
         <div class='form-group'>
           <input class='form-control' type='text' value='<%= poem.title %>' name='poem[title]'>
         </div>
+        <h3>Poem</h3>
         <div class='form-group'>
-          <textarea class='form-control' type='textarea' rows='3' name='poem[description]'><%= poem.description %></textarea>
+          <textarea class='form-control' type='textarea' rows='3' name='poem[content]'><%= poem.content %></textarea>
         </div>
         <div class='form-group'>
           <button class='btn btn-primary'>Submit</button>
