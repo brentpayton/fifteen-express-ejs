@@ -47,7 +47,7 @@ router.post('/', middleware.isLoggedIn, function(req, res) {
 });
 
 // ----------------------------------------------------------------------------
-// Show details about one campground
+// Show details about one poem
 //
 // MUST NOT BE MOVED any higher in this file otherwise a request to /new, for
 // example, will cause 'new' to be interpreted as a campground id and this will
