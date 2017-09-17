@@ -21,7 +21,7 @@
           <a href='/poems/<%= poem._id %>' class='btn btn-primary'>View</a>
         </div>
         <div style="text-align: left;">
-          <p> <%= poem.content %> </p>
+          <p> <%= poem.content.substring(0,100) %> . . .  </p>
         </div>
       </div>
     <% }); %>
