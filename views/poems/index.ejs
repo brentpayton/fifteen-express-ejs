@@ -13,7 +13,7 @@
 
   <div class='row text-center'>
     <% poems.forEach(function(poem){ %>
-      <div class='col-md-3 col-sm-6'>
+      <div class='col-md-3 col-sm-6 fifteencard'>
         <div class='caption'>
           <h4> <%= poem.title %> </h4>
         </div>
@@ -23,7 +23,6 @@
         <div style="text-align: left;">
           <p> <%= poem.content %> </p>
         </div>
-        <div><hr /></div>
       </div>
     <% }); %>
   </div>
