@@ -25,10 +25,10 @@ mongoose.Promise          = Promise;
 var dbUrl                 = process.env.DATABASEURL || 'mongodb://localhost/yelpcamp';
                           //mongoose.connect(process.env.DATABASEURL);
                           mongoose.connect(dbUrl);
+
 // ----------------------------------------------------------------------------
 // Models
 // ----------------------------------------------------------------------------
-var Campground            = require('./models/campground.js');
 var Comment               = require('./models/comment.js');
 var User                  = require('./models/user.js');
 var Poem                  = require('./models/poem.js');
